@@ -1,0 +1,50 @@
+$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px, "xxl":1440, "4k":2560);
+
+@mixin media($minmax, $media, $orientation:landscape) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) and (orientation:$orientation){
+        @content;
+      }
+    }
+  }
+}
+
+@mixin centered-content-flex($justify){
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+  flex-direction: column;
+}
+
+.foot-wrapper{
+    @include centered-content-flex(space-between);
+    height: 6rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: #0EADCA;
+    font-size: 12px;
+}
+
+@include media("min", "xl"){
+  .foot-wrapper{
+    @include centered-content-flex(space-evenly);
+    height: 10rem;
+    font-size: x-large;
+}
+}
+
+@include media("max", "sm", "portrait"){
+    .foot-wrapper{
+        height: initial;
+        width: initial;
+        text-align: center;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+  .foot-wrapper{
+    @include centered-content-flex(space-evenly);
+      height: 10rem;
+  }
+}

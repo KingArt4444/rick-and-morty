@@ -1,0 +1,58 @@
+$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px, "xxl":1440, "4k":2560);
+
+@mixin media($minmax, $media, $orientation:landscape) {
+    @each $size, $resolution in $sizes {
+      @if $media == $size {
+        @media only screen and (#{$minmax}-width: $resolution) and (orientation:$orientation){
+          @content;
+        }
+      }
+    }
+  }
+
+@mixin centered-content-flex($justify){
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+}
+
+.wrapper{
+    @include centered-content-flex(center);
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #B2DF28;
+    padding: 2rem 5rem;
+}
+
+.card-field-wrapper{
+    @include centered-content-flex(space-evenly);
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+
+@include media("min", "xl"){
+    .wrapper{
+        @include centered-content-flex(space-evenly);
+    }
+
+    .card-field-wrapper{
+        height: 80vh;
+    }
+}
+
+@include media("max", "sm", "portrait"){
+    .wrapper{
+        padding: 2rem 0;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+    .wrapper{
+        @include centered-content-flex(space-evenly);
+        flex-direction: column;
+        height: 100%;
+    }
+  }

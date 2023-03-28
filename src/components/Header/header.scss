@@ -1,0 +1,58 @@
+$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px, "xxl":1440, "4k":2560);
+
+@mixin media($minmax, $media, $orientation:landscape) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) and (orientation:$orientation){
+        @content;
+      }
+    }
+  }
+}
+
+@mixin centered-content-flex($justify){
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
+.head-wrapper{
+    @include centered-content-flex(space-between);
+    height: 4rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: #0EADCA;
+}
+
+.logo{
+    height: 3rem;
+}
+
+@include media("min", "xl"){
+  .head-wrapper{
+    height: 10rem;
+}
+
+.logo{
+  height: 8rem;
+}
+}
+
+@include media("max", "md", "portrait"){
+    .head-wrapper{
+        flex-direction: column;
+        height: initial;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+  .head-wrapper{
+      @include centered-content-flex(center);
+      flex-direction: column;
+      height: 10rem;
+  }
+
+  .logo{
+    height: 8rem;
+  }
+}
