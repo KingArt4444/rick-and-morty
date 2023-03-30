@@ -4,7 +4,7 @@ import './footer.scss'
 
 export default function Footer(){
 
-    return <div className='foot-wrapper'>
+    return <footer className='foot-wrapper'>
       <div>
        Rick&Morty Task
       </div>
@@ -14,5 +14,5 @@ export default function Footer(){
       <div>
        Ты нет. All right reserved. 2023 ©
       </div>
-    </div>
+    </footer>
 }

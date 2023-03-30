@@ -8,7 +8,7 @@ export default function CharacterCard(){
           <img src={tempcharimg} alt='charImg' />
           <div className='char-info'>
             <div className='char-info-main'>
-              <h2>ТЫ НЕТ</h2>  {/*{Name}*/}
+              <h2>Seth Freaking Rollins</h2>  {/*{Name}*/}
               <span>Male - Booster</span> {/*{Gender} - {Species}*/}
             </div>
             <div className='char-info-location'>

@@ -1,14 +1,4 @@
-$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px, "xxl":1440, "4k":2560);
-
-@mixin media($minmax, $media, $orientation:landscape) {
-    @each $size, $resolution in $sizes {
-      @if $media == $size {
-        @media only screen and (#{$minmax}-width: $resolution) and (orientation:$orientation){
-          @content;
-        }
-      }
-    }
-  }
+@import "/src/global.scss";
 
 .input-wrapper{
 position: relative;
@@ -44,7 +34,7 @@ position: relative;
 
 @include media("min", "xs", "portrait"){
     .input, .input-wrapper{
-        width: 90%;
+        width: 70%;
         height: 40px;
         margin-left: 0;
         text-align: center;
@@ -57,7 +47,7 @@ position: relative;
 
 @include media("max", "xs", "portrait"){
     .input, .input-wrapper{
-        width: 90%;
+        width: 70%;
         margin-left: 0;
         text-align: center;
     }
