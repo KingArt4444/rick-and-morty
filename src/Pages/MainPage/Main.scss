@@ -1,0 +1,40 @@
+@import "/src/global.scss";
+
+.wrapper{
+    @include centered-content-flex(center);
+    flex-direction: column;
+    width: 100%;
+    background-color: #B2DF28;
+    padding: 4rem 5rem;
+}
+
+.card-field-wrapper{
+    @include centered-content-flex(space-evenly);
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+
+@include media("min", "xl"){
+    .wrapper{
+        @include centered-content-flex(space-evenly);
+    }
+}
+
+@include media("max", "sm", "portrait"){
+    .wrapper{
+        padding: 2rem 0;
+    }
+    .card-field-wrapper{
+        flex-direction: column;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+    .wrapper{
+        @include centered-content-flex(space-evenly);
+        flex-direction: column;
+        height: 100%;
+    }
+  }

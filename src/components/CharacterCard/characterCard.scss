@@ -1,0 +1,240 @@
+@import "/src/global.scss";
+
+.card-wrapper{
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    // max-height: 14rem;
+    height: 14rem;
+    width: 22%;
+    width: 22%;
+    background-color: rgb(10, 70, 70);
+    box-shadow: 1px 2px 1px rgb(0, 0, 0);
+    margin: 10px;
+    transition: transform .2s;
+
+    img{
+        height: 5rem;
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.char-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px 5px 8px 5px;
+    color: white;
+    height: 9rem;
+
+    .char-info-main{
+        width: 100%;
+        display: inherit;
+        flex-direction: inherit;
+        overflow: hidden;
+        height: 3rem;
+
+        h2{
+          height: 2rem;
+          line-height: 2rem;
+          overflow: hidden;
+        }
+
+        span{
+            height: 1rem;
+            line-height: 1rem;
+        }
+    }
+
+    .char-info-location, .char-info-episode{
+        display: inherit;
+        flex-direction: inherit;
+        justify-content: center;
+        align-items: inherit;
+        margin-top: 3px;
+        width: 90%;
+        height: 2rem;
+
+        span{
+            color:darkgray;
+        }
+    }
+
+    h2, span, a{
+       overflow: hidden;
+       text-overflow: ellipsis;
+       width: calc(100%);
+    }
+
+    h2{
+        font-size: 13px;
+    }
+
+    span{
+       font-size: 7px; 
+    }
+    
+    a {
+        font-size: 8px;  
+    }
+}
+
+@include media("min", "xl"){
+    .card-wrapper{
+        width: 30%;
+        height: 20rem;
+        margin: 10px 0;
+
+        img{
+            height: 8rem;
+        }
+    }
+
+    .char-info{
+        height: 12rem;
+
+        h2{
+            font-size: 17px;
+        }
+    
+        span{
+           font-size: 12px; 
+        }
+        
+        a {
+            font-size: 13px;  
+        }
+    }
+}
+
+@include media("min", "xxl"){
+    .card-wrapper{
+        width: 30%;
+        height: 27rem;
+        margin: 10px 0;
+
+        img{
+            height: 11rem;
+        }
+    }
+
+    .char-info{
+        height: 16rem;
+
+        h2{
+            font-size: 20px;
+        }
+    
+        span{
+           font-size: 15px; 
+        }
+        
+        a {
+            font-size: 16px;  
+        }
+
+        .char-info-location, .char-info-episode{
+            height: 3rem;
+        }
+    }
+}
+
+@include media("max", "lg"){
+    .char-info{
+        .char-info-main{
+            h2{
+                line-height: 1rem;
+            }
+        }
+    }
+}
+
+@include media("min", "sm", "portrait"){
+    .card-wrapper{
+        min-width: 90%;
+        height: 16rem;
+        margin: 10px 0;
+
+        img{
+            height: 6rem;
+        }
+    }
+
+    .char-info{
+        height: 10rem;
+
+        h2{
+            font-size: 16px;
+        }
+    
+        span{
+           font-size: 11px; 
+        }
+        
+        a {
+            font-size: 12px;  
+        }
+    }
+}
+
+@include media("min", "md", "portrait"){
+    .card-wrapper{
+        min-width: 90%;
+        height: 18rem;
+        margin: 10px 0;
+
+        img{
+            height: 8rem;
+        }
+    }
+
+    .char-info{
+        height: 10rem;
+    }
+}
+
+@include media("max", "sm", "portrait"){
+    .card-wrapper{
+        min-width: 90%;
+        height: initial;
+        margin: 10px 0;
+    }
+
+    .char-info{
+        .char-info-main{
+            h2{
+                line-height: 1rem;
+            }
+        }
+        h2{
+            font-size: 12px;
+        }
+    
+        span{
+           font-size: 9px; 
+        }
+        
+        a {
+            font-size: 10px;  
+        }
+    }
+}
+
+@include media("max", "lg", "portrait"){
+    .card-wrapper{
+        min-width: 45%;
+    }
+  }
+
+  @include media("min", "lg", "portrait"){
+    .card-wrapper{
+        min-width: 45%;
+    }
+  }

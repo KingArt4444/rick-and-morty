@@ -1,0 +1,17 @@
+$sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px, "xxl":1440px, "4k":2560px);
+
+@mixin media($minmax, $media, $orientation:landscape) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) and (orientation:$orientation){
+        @content;
+      }
+    }
+  }
+}
+
+@mixin centered-content-flex($justify){
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}

@@ -1,0 +1,42 @@
+@import "/src/global.scss";
+
+.head-wrapper{
+    @include centered-content-flex(space-between);
+    height: 4rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: #0EADCA;
+}
+
+.logo{
+    height: 3rem;
+}
+
+@include media("min", "xl"){
+  .head-wrapper{
+    height: 10rem;
+}
+
+.logo{
+  height: 8rem;
+}
+}
+
+@include media("max", "md", "portrait"){
+    .head-wrapper{
+        flex-direction: column;
+        height: initial;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+  .head-wrapper{
+      @include centered-content-flex(center);
+      flex-direction: column;
+      height: 10rem;
+  }
+
+  .logo{
+    height: 8rem;
+  }
+}

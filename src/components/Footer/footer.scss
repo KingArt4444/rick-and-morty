@@ -1,0 +1,34 @@
+@import "/src/global.scss";
+
+.foot-wrapper{
+    @include centered-content-flex(space-between);
+    flex-direction: column;
+    height: 6rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: #0EADCA;
+    font-size: 12px;
+}
+
+@include media("min", "xl"){
+  .foot-wrapper{
+    @include centered-content-flex(space-evenly);
+    height: 10rem;
+    font-size: x-large;
+}
+}
+
+@include media("max", "sm", "portrait"){
+    .foot-wrapper{
+        height: initial;
+        width: initial;
+        text-align: center;
+    }
+}
+
+@include media("max", "lg", "portrait"){
+  .foot-wrapper{
+    @include centered-content-flex(space-evenly);
+      height: 10rem;
+  }
+}
