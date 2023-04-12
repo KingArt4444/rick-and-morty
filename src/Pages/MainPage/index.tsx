@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Main.scss'
 import CharacterCard from '../../components/CharacterCard';
 import Input from '../../components/Input';
+import { useAppDispatch, useAppSelector } from '../../feature/hooks';
+import { fetchCharacters } from '../../feature/slices/characterSlice';
+import { fetchEpisodes } from '../../feature/slices/episodeSlice';
+import { Episode, CharacterModel } from '../../feature/models';
 
-export default function MainPage(){
+export default function MainPage() {
 
-    return <div className='wrapper'>
-        <Input />
-        <div className='card-field-wrapper'>
-          <CharacterCard />
-          <CharacterCard />
-          <CharacterCard />
-          <CharacterCard />
-          <CharacterCard />
-          <CharacterCard />
-        </div>
+  const characters: CharacterModel[] = useAppSelector((state) => state.characters.results)
+  const episodes: Episode[] = useAppSelector((state) => state.episodes.results)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCharacters())
+    dispatch(fetchEpisodes())
+  }, [dispatch])
+
+
+  console.log(1, characters)
+  console.log(2, episodes)
+
+
+  return <div className='wrapper'>
+    <Input />
+    <div className='card-field-wrapper'>
+      {characters.map((char:CharacterModel) => <CharacterCard key={char.id} {...{character:char}} />)}
     </div>
+  </div>
 }
