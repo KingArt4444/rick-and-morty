@@ -18,11 +18,6 @@ export default function MainPage() {
     dispatch(fetchEpisodes())
   }, [dispatch])
 
-
-  console.log(1, characters)
-  console.log(2, episodes)
-
-
   return <div className='wrapper'>
     <Input />
     <div className='card-field-wrapper'>

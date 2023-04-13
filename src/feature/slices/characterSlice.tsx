@@ -49,8 +49,6 @@ export const characterSlice = createSlice({
         setCharacters: (state, action) => {
             state.info = action.payload.info
             state.results = action.payload.results
-
-            console.log(5, state.results)
         },
     },
 })
@@ -62,20 +60,19 @@ export const { setCharacters } = characterSlice.actions
 
 export const fetchCharacters = () => async (dispatch: Dispatch) => {
     try {
-        const result = await client.get<GetCharactersResponse>('/character').then((res) => res.data)
+        const result = await client.get<GetCharactersResponse>('/character')
 
-        const charactersInfo = result.info
-        const dispatchResult = await Promise.all(result.results.map(async (char: CharacterModel) => {
-            let episode: Episode
+        const charactersInfo = result.data.info
+        const dispatchResult = await Promise.all(result.data.results.map(async (char: CharacterModel) => {
             try {
-                episode = await client.get<Episode>(cutBaseUrl(char.episode[0])).then((res) => res.data)
+                const episode = await client.get<Episode>(cutBaseUrl(char.episode[0]))
+                return {
+                    ...char,
+                    firstEpisode: episode.data
+                }
             }
             catch (error) {
                 return console.error(error)
-            }
-            return {
-                ...char,
-                firstEpisode: episode
             }
         }))
         dispatch(setCharacters({info: charactersInfo, results: dispatchResult}))
@@ -84,8 +81,3 @@ export const fetchCharacters = () => async (dispatch: Dispatch) => {
         return console.error(error)
     }
 }
-
-//   export const getCharacters = createAsyncThunk('character/getCharacters', async () => {
-    //     const response = await client.get<GetCharactersResponse>('/character').then((res => characterSlice.actions.setCharacters(res.data)))
-    //     console.log(response)
-    // })

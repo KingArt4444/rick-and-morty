@@ -31,9 +31,9 @@ export const { setEpisodes } = episodeSlice.actions
 export const fetchEpisodes = () => async (dispatch: Dispatch) => {
     try {
         const result = await client.get<GetEpisodesResponse>('/episode')
-            .then((res) => dispatch(setEpisodes(res.data)))
+        dispatch(setEpisodes(result.data))
     }
-    catch (error){
+    catch (error) {
         return console.error(error)
     }
 }
