@@ -33,6 +33,7 @@ export interface CharacterModel extends Character{
 export interface GetCharactersResponse {
     info: PaginationInfo
     results: CharacterModel[]
+    currentCharacter: CharacterModel
 }
 
 export interface Episode {

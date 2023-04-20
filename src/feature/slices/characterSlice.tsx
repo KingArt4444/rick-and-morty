@@ -40,6 +40,35 @@ const initialState: GetCharactersResponse = {
             created: '',
         },
     }],
+    currentCharacter: {
+        id: 0,
+        name: '',
+        status: '',
+        species: '',
+        type: '',
+        gender: '',
+        origin: {
+            name: '',
+            url: '',
+        },
+        location: {
+            name: '',
+            url: '',
+        },
+        image: '',
+        episode: [],
+        url: '',
+        created: '',
+        firstEpisode: {
+            id: 0,
+            name: '',
+            air_date: '',
+            episode: '',
+            characters: [],
+            url: '',
+            created: '',
+        },
+    }
 }
 
 export const characterSlice = createSlice({
@@ -50,13 +79,16 @@ export const characterSlice = createSlice({
             state.info = action.payload.info
             state.results = action.payload.results
         },
+        setCurrentCharacter: (state, action) => {
+            state.currentCharacter = action.payload.data
+        }
     },
 })
 
 
 export default characterSlice.reducer
 
-export const { setCharacters } = characterSlice.actions
+export const { setCharacters, setCurrentCharacter } = characterSlice.actions
 
 export const fetchCharacters = () => async (dispatch: Dispatch) => {
     try {
@@ -75,9 +107,27 @@ export const fetchCharacters = () => async (dispatch: Dispatch) => {
                 return console.error(error)
             }
         }))
-        dispatch(setCharacters({info: charactersInfo, results: dispatchResult}))
+        dispatch(setCharacters({ info: charactersInfo, results: dispatchResult }))
     }
-    catch (error){
+    catch (error) {
+        return console.error(error)
+    }
+}
+
+export const fetchCharacterById = (id: number) => async (dispatch: Dispatch) => {
+    try {
+        const result = await client.get<CharacterModel>(`/character/${id}`)
+
+        const characterInfo = result.data
+
+        const episode = await client.get<Episode>(cutBaseUrl(characterInfo.episode[0]))
+        const dispatchResult = {
+            ...characterInfo,
+            firstEpisode: episode.data
+        }
+        dispatch(setCurrentCharacter({ data: dispatchResult }))
+    }
+    catch (error) {
         return console.error(error)
     }
 }
