@@ -1,0 +1,72 @@
+@import "/src/global.scss";
+
+.pagination-wrapper {
+    @include centered-content-flex(center);
+    width: 100%;
+    padding: 2rem 3rem;
+}
+
+.pagination-pageButton {
+    border: none;
+    background: none;
+    margin: 0 0.4rem;
+    width: 30px;
+    height: 30px;
+    line-height: 25px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #8ae0ef;
+        border-radius: 50%;
+        box-shadow: 3px 2px 6px 0px rgb(9, 70, 70);
+    }
+}
+
+.pagination-pageActive {
+    cursor: pointer;
+    background-color: #8ae0ef;
+    border-radius: 50%;
+    box-shadow: 3px 2px 6px 0px rgb(9, 70, 70);
+}
+
+.pagination-separator {
+    width: 30px;
+    height: 30px;
+    line-height: 20px;
+}
+
+@include media("max", "md", "portrait") {
+    .pagination-wrapper {
+        padding: 1rem 0;
+
+        .pagination-pageButton {
+            margin: 0 0.1rem;
+            font-size: 10px;
+        }
+    }
+}
+
+@include media("min", "xxl") {
+    .pagination-wrapper {
+        padding: 2rem 3rem;
+
+        .pagination-pageButton {
+            width: 40px;
+            height: 40px;
+            margin: 0 0.8rem;
+        }
+    }
+}
+
+@include media("min", "4k") {
+    .pagination-wrapper {
+        padding: 4rem 6rem;
+
+        .pagination-pageButton {
+            width: 70px;
+            height: 70px;
+            font-size: x-large;
+            margin: 0 0.8rem;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-interface PaginationInfo {
+export interface PaginationInfo {
     count: number
     pages: number
     next: string
@@ -34,6 +34,8 @@ export interface GetCharactersResponse {
     info: PaginationInfo
     results: CharacterModel[]
     currentCharacter: CharacterModel
+    isLoading: boolean
+    error: string
 }
 
 export interface Episode {

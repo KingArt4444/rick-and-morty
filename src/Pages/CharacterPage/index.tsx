@@ -4,13 +4,17 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../feature/hooks';
 import { fetchCharacterById } from '../../feature/slices/characterSlice';
 import { CharacterModel } from '../../feature/models';
+import Loader from '../../components/Loader';
+import ErrorComponent from '../../components/ErrorComponent';
 
 export default function CharacterPage() {
     const { id } = useParams();
     const dispatch = useAppDispatch()
     const character: CharacterModel = useAppSelector((state) => state.characters.currentCharacter)
+    const isLoading: boolean = useAppSelector((state) => state.characters.isLoading)
+    const error: string = useAppSelector((state) => state.characters.error)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchCharacterById(Number(id)))
     }, [dispatch])
 
@@ -25,9 +29,21 @@ export default function CharacterPage() {
         origin,
     } = character
 
+    if(isLoading){
+        return <div className='char-wrapper'>
+        <Loader />
+      </div>
+      }
+    
+      if(error){
+        return <div className='char-wrapper'>
+        <ErrorComponent {...{errorMessage: error}} />
+      </div>
+      }
+
     return <div className='char-wrapper'>
         <div className='char-img-wrapper'>
-            <img src={image} alt='charImg' />
+            <img className='char-img' src={image} alt='charImg'  />
         </div>
         <div className='char-info-block'>
             <div>
