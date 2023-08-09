@@ -30,7 +30,7 @@ export default function PaginationComponent(props: PaginationComponentProps) {
             <button
                 onClick={() => handlePageChange(1)}
                 type="button"
-                className={page === 1 ? 'pagination-pageButton pagination-pageActive' : 'pagination-pageButton'}
+                className={`pagination-pageButton ${page === 1 ? 'pagination-pageActive' : ''}`}
             >
                 {1}
             </button>
@@ -93,7 +93,7 @@ export default function PaginationComponent(props: PaginationComponentProps) {
         <button
             onClick={() => handlePageChange(totalPages)}
             type="button"
-            className={page === totalPages ? 'pagination-pageButton pagination-pageActive' : 'pagination-pageButton'}
+            className={`pagination-pageButton ${page === totalPages ? 'pagination-pageActive' : ''}`}
         >
             {totalPages}
         </button>

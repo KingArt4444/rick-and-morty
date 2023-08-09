@@ -23,12 +23,12 @@ export default function CharacterCard(props: CharacterCardProps) {
   } = character
 
   return <div className='card-wrapper'>
-    <Link to={`characters/${id}`} style={{ textDecoration: 'none' }}>
+    <Link to={`characters/${id}`} className='card-img-link'>
       <img src={image} alt='charImg' />
     </Link>
     <div className='char-info'>
       <div className='char-info-main'>
-        <Link to={`characters/${id}`} style={{ textDecoration: 'none', color: "white" }}>
+        <Link to={`characters/${id}`} className='char-info-link'>
           <h2>{name}</h2>
         </Link>
         <span>{gender} - {species}</span>
