@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './characterCard.scss'
-import { CharacterModel} from '../../feature/models';
+import { CharacterModel } from '../../feature/models';
 
 interface CharacterCardProps {
   character: CharacterModel
@@ -12,6 +13,7 @@ export default function CharacterCard(props: CharacterCardProps) {
   } = props
 
   const {
+    id,
     name,
     gender,
     species,
@@ -21,10 +23,14 @@ export default function CharacterCard(props: CharacterCardProps) {
   } = character
 
   return <div className='card-wrapper'>
-    <img src={image} alt='charImg' />
+    <Link to={`characters/${id}`} className='card-img-link'>
+      <img src={image} alt='charImg' />
+    </Link>
     <div className='char-info'>
       <div className='char-info-main'>
-        <h2>{name}</h2>
+        <Link to={`characters/${id}`} className='char-info-link'>
+          <h2>{name}</h2>
+        </Link>
         <span>{gender} - {species}</span>
       </div>
       <div className='char-info-location'>
@@ -36,5 +42,6 @@ export default function CharacterCard(props: CharacterCardProps) {
         <a>{firstEpisode.name}</a>
       </div>
     </div>
+
   </div>
 }

@@ -1,0 +1,52 @@
+@import "/src/global.scss";
+
+.char-wrapper {
+    @include centered-content-flex(space-evenly);
+    width: 100%;
+    height: 100vh;
+    background-color: #B2DF28;
+    padding: 4rem 5rem;
+
+    .char-img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    span {
+        display: block;
+    }
+
+    .char-img-wrapper {
+        max-width: 10rem;
+        margin-right: 2rem;
+    }
+
+    .info-highlight {
+        font-weight: bold;
+    }
+}
+
+@include media("max", "lg", "portrait") {
+    .char-wrapper {
+        @include centered-content-flex(center);
+        text-align: center;
+        width: 100%;
+        flex-direction: column;
+        padding: 0;
+
+
+        .char-img-wrapper {
+            max-width: 80%;
+            margin-right: 0;
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+@include media("min", "xl"){
+    .char-wrapper{
+        .char-img-wrapper{
+            max-width: 20rem;
+        }
+    }
+}
